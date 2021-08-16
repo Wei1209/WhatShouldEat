@@ -1,0 +1,72 @@
+.mainContent {
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.score {
+  margin-top: 20px;
+}
+
+.order-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.order-box h1 {
+  color: rgb(61, 153, 145);
+  font-size: 30px;
+}
+
+.order-box div {
+  font-size: 20px;
+}
+
+.order-box .detail {
+  width: 30%;
+  height: 500px;
+  margin: auto;
+  margin-top:20px;
+  border: 1px solid black;
+}
+
+#unfin .order-box .detail {
+  width: 30%;
+  height: 500px;
+  margin: auto;
+  margin-top:20px;
+  border: 1px solid black;
+}
+
+#fin .detail {
+  width: 30%;
+  height: 700px;
+  margin: auto;
+  margin-top:20px;
+  border: 1px solid black;
+}
+
+
+
+.orderbox {
+  height: 95px;
+  width: 250px;
+  margin: auto;
+  overflow-y:auto;
+}
+
+#total_price {
+  margin-top: 25px;
+}
+
+.hidden{
+  display: none;
+}
+
+.mini {
+  color: #8F6140;
+  font-size: 40px;
+}
+
+.large {
+  color: #8F6140;
+  font-size: 50px;
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+ <html>
+   <head>
+     <meta charset="utf-8">
+     <title>等下要吃啥勒</title>
+     <link rel="stylesheet" type="text/css" href="css/Style.css<?php print('?'.filemtime('Style.css'));?>"/>
+     <link rel="stylesheet" type="text/css" href="css/RandomPickstyle.css<?php print('?'.filemtime('RandomPickstyle.css'));?>"/>
+     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" href="csshake.min.css">
+     <link rel="stylesheet" type="text/css" href="https://csshake.surge.sh/csshake.min.css">
+     <script src = "RandomPick.js" defer></script>
+     <script src = "Pick.js" defer></script>
+     <link rel="stylesheet" href="wickedcss.min.css">
+
+
+   </head>
+   <body>
+     <header id="table">
+       <nav>
+         <div id="links">
+           <?php require 'log-in-process.php' ?>
+         </div>
+       </nav>
+
+     </header>
+
+     <section class = "cover">
+       <div id="main">
+         <h1>尋找高大附近美食</h1>
+         <p>
+           資料庫只有20間
+         </p>
+       </div>
+
+       <form action="Search.php" method="post">
+         <div class="box">
+           <div class="container-1">
+             <span class="icon"><i class="fa fa-search"></i></span>
+             <input type="search" id="search" name = "input-item" placeholder="搜尋餐廳...." />
+          </div>
+         </div>
+       </form>
+     </section>
+     <section>
+       <div id="detail">
+         <h1 class = 'title'>不知道要吃什麼嗎?</h1>
+         <div id = "ani" class="shake-slow shake-constant"><img src="image/Question_Block_3D.png"></div>
+         <?php //列出所有餐廳
+ 			     require 'DBconnect.php';
+ 			     $name = "SELECT Name,PHOTO,COALESCE(Service_Score, 0),COALESCE(Envi_Score, 0),COALESCE(Food_Score, 0)
+                     FROM restaurant
+                     LEFT JOIN 評價
+                     ON Name = R_Name";
+ 			     $result = mysqli_query($conn,$name);
+           $num = mysqli_num_rows($result);
+           $sele = rand(1,$num);
+           for($i = 1 ; $i < $sele ; $i++)
+           {
+             $rs = mysqli_fetch_row($result);
+           }
+           $avg_score = ($rs[2] + $rs[3] + $rs[4]) / 3;
+           $avg_score_percent = $avg_score * 20;
+           echo "<div id = res_pic class = '".$rs[0]." hidden-result'><img src = '".$rs[1]."'></img><h1>".$rs[0]."</h1>";
+           echo "<div id = gray_star>
+             <div id = yellow_star style = 'width: $avg_score_percent%'></div>
+           </div> </div>";
+ 		    ?>
+       </div>
+
+       <div id="show" class="hidden">
+         <a class="myButton">X</a>
+         <div class="show-container">
+           <div class="photo">
+             <?php
+               $pic = "SELECT PHOTO,Name FROM restaurant";
+               $result = mysqli_query($conn,$pic);
+               while($rs0 = mysqli_fetch_row($result))
+               {
+                 $n = array();
+                 $n = explode(" ",$rs0[1]);
+                 echo "<div id = '".$rs0[1]."' class = 'hidden-res'>
+                 <h1>".$rs0[1]."</h1>
+                 <img src = '".$rs0[0]."'></img>
+                 </div>";
+               }
+              ?>
+           </div>
+           <div class="menu">
+             <h1>菜單 MENU</h1>
+               <?php
+                 $res = "SELECT Name FROM restaurant";
+                 $result2 = mysqli_query($conn,$res);
+                 echo"<div class = 'menu-detail'>";
+                 while($rs1 = mysqli_fetch_row($result2))
+                 {
+                   echo "<form action='OrderCheck.php' method='post'>";
+                   $menu = "SELECT Food_Name,Price FROM food WHERE Res_Name = '".$rs1[0]."'";
+                   $result = mysqli_query($conn,$menu);
+                   echo "<div id = '".$rs1[0]."2' class = 'hidden-menu'>";
+                   echo "<input class='noshow' type = 'text' name = 'orderRes' value = '".$rs1[0]."'>";
+                   while ($rs = mysqli_fetch_row($result)) {
+                     echo "<div>".$rs[0]."</div>";
+                     echo "<div>".$rs[1]."元</div>";
+                     if(isset($_SESSION['name']) && $_SESSION['name'])
+                     {
+                       echo "<select name = '".$rs[0]."'>
+                       <option>0</option>
+                       <option>1</option>
+                       <option>2</option>
+                       <option>3</option>
+                       <option>4</option>
+                       <option>5</option>
+                       </select>";
+                     }
+                   }
+                   if(isset($_SESSION['name']) && $_SESSION['name'])
+                   {
+                     echo "<input type = 'submit' value = '訂購'>";
+                   }
+                   else {
+                     echo "<div>下單前請先登入</div>";
+                   }
+                   echo "</div>";
+                   echo "</form>";
+                 }
+                 echo"</div>";
+                ?>
+           </div>
+         </div>
+       </div>
+     </section>
+     <footer>
+     </footer>
+   </body>
+ </html>

@@ -1,0 +1,46 @@
+.orderList {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+#title {
+  color: #8F6140;
+  font-size: 50px;
+}
+
+#title2 {
+  margin: 0;
+  font-size: 25px;
+  color: rgb(61, 153, 145);
+}
+
+.orderList h1 {
+  font-size: 25px;
+  color: rgb(61, 153, 145);
+}
+
+.orderList div {
+  font-size: 20px;
+}
+
+.orderbox {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.orderbox div {
+  margin-bottom: 10px;
+  width: 30%;
+}
+
+#total_price{
+  margin-top: 20px;
+}
+
+#hidden-order {
+  display: none;
+}

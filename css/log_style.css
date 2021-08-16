@@ -1,0 +1,35 @@
+#LogTable{
+    display: flex;
+    align-items: center;
+	  justify-content: center;
+	  flex-direction: column;
+    height: 700px;
+    background-color: #FFEDA4;
+    margin-left: : 100px;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+p{
+	line-height: 36px;
+}
+
+input.in_data{
+	padding: 5px;
+	margin: 10px;
+}
+
+input.log_button{
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	padding: 5px;
+
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}

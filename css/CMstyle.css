@@ -1,0 +1,51 @@
+#details {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+#details h1 {
+  color: rgb(61, 153, 145);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.addframe {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.frameName
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.addframe option {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.frame {
+  justify-content: flex-start;
+}
+
+.change {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-top: auto;
+  margin-bottom: 70px;
+}
+
+.list_menu {
+  width: 200px;
+}
+
+select {
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
